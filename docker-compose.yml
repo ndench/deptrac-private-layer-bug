@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+    composer:
+        image: composer:2
+        volumes:
+            - './:/app'
+            - '${HOME}/.config/composer:/root/.composer:delegated'
+            - '${HOME}/.cache/composer:/root/.cache/composer:delegated'
+
+    php:
+        build:
+            context: .
+            dockerfile: .docker/php.Dockerfile
+        working_dir: /var/www/html
+        extra_hosts:
+            - host.docker.internal:host-gateway
+        volumes:
+            - './:/var/www/html'
+
+volumes: {}
