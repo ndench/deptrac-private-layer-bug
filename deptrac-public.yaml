@@ -1,0 +1,42 @@
+deptrac:
+    paths:
+        - ./src
+    exclude_files:
+        - '#.*test.*#'
+    layers:
+        -   name: Location
+            collectors:
+                -   type: bool
+                    must:
+                        -   type: directory
+                            value: Location/.*
+                    must_not:
+                        -   type: directory
+                            value: Location/Public/.*
+        -   name: Location_Public
+            collectors:
+                -   type: directory
+                    value: Location/Public/.*
+        -   name: Rating
+            collectors:
+                -   type: bool
+                    must:
+                        -   type: directory
+                            value: Rating/.*
+                    must_not:
+                        -   type: directory
+                            value: Rating/Public/.*
+        -   name: Rating_Public
+            collectors:
+                -   type: directory
+                    value: Rating/Public/.*
+    ruleset:
+        Location:
+            - Rating_Public
+            - Location_Public
+        Rating:
+            - Rating_Public
+            - Location_Public
+        Rating_Public:
+            - Rating
+            - Location_Public
