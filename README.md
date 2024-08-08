@@ -2,7 +2,9 @@
 
 A quick simple reproduction of the issue where Deptrac ignores private layers.
 
-We have 2 deptract configuration files:
+See [qossmic/deptrac#1435](https://github.com/qossmic/deptrac/issues/1435).
+
+We have 2 Deptrac configuration files:
 
 1. [deptrac-private.yaml](./deptrac-private.yaml) 
     - Configuration using the `private` parameter
